@@ -33,51 +33,104 @@ function Intro() {
   );
 }
 
+const skillsData = [
+  {
+    name: "HTML+CSS",
+    level: "advanced",
+    backgroundColor: "blue",
+  },
+  {
+    name: "JavaScript",
+    level: "advanced",
+    backgroundColor: "yellow",
+  },
+  {
+    name: "Web Design",
+    level: "advanced",
+    backgroundColor: "green",
+  },
+  {
+    name: "Git and Github",
+    level: "intermediate",
+    backgroundColor: "magenta",
+  },
+  {
+    name: "React",
+    level: "advanced",
+    backgroundColor: "cyan",
+  },
+  {
+    name: "Svelte",
+    level: "beginner",
+    backgroundColor: "red",
+  },
+];
+
 function Skilllist() {
   return (
     <div className="skill-list">
-      <Skill 
-      name="HTML+CSS"
-      emoji=" 👍"
-      backgroundColor="blue"
+      {skillsData.map((skillss) => (
+        <Skill skillsObj={skillss} key={skillss.name} />
+      ))}
+
+      {/* <Skill 
+       name="HTML+CSS"
+       level=" 👍"
+       backgroundColor="blue"
       />
 
       <Skill 
-      name="JavaScript"
-      emoji=" 👍"
-      backgroundColor="yellow"
+        name="JavaScript"
+        level=" 👍"
+        backgroundColor="yellow"
       />
 
       <Skill 
       name="Web Design"
-      emoji=" 👍"
+      level=" 👍"
       backgroundColor="green"
       />
 
       <Skill 
       name="Git and Github"
-      emoji=" 🤞"
+      level=" 🤞"
       backgroundColor="brown"
       />
       <Skill 
       name="React"
-      emoji=" 🤞"
+      level=" 🤞"
       backgroundColor="cyan"
       />
       <Skill 
       name="Svelte"
-      emoji=" 🤞"
+      level=" 🤞"
       backgroundColor="red"
-      />
+      /> */}
     </div>
   );
 }
 
-function Skill(props) {
-  return <div className="skill" style={{backgroundColor: props.backgroundColor}}>
-    <span className="pad">{props.name}</span>
-    <span className="pad">{props.emoji}</span>
-  </div>
+function Skill({ skillsObj }) {
+  return (
+    <div
+      className="skill"
+      style={{ backgroundColor: skillsObj.backgroundColor }}
+    >
+      <span className="pad">{skillsObj.name}</span>
+      <span className="pad">
+        {/* {skillsObj.level === "advanced"
+          ? " 💪"
+          : skillsObj.level === "intermediate"
+          ? " 👍"
+          : " 🧑"} */}
+
+          {/* using $$ and benefitting from short-circuiting */}
+          {skillsObj.level === "beginner" && "🧑"}
+          {skillsObj.level === "intermediate" && "👍"}
+          {skillsObj.level === "advanced" && "💪"}
+      </span>
+    </div>
+  );
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
